@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "f7qPvjBCfIupBhwFf3YP1/T+EanKP5ft4j8Fwol6hKpGTJPQQHtYYgOjXUERxEk2upHPEoqPatgA200gAXTFfA==",
+  "dgSpecHash": "FQzdiJxIdJc9TeOZBnusrPTyI35+g4IEpjOKUJzPl2X258FY9IbIOe4ED6jaxo08ApqV6Ptmyz41QPeJ1cNYVw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Huawei\\source\\repos\\FilmsApp\\FilmsApp\\FilmsApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Huawei\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Huawei\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
+    "C:\\Users\\Huawei\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
