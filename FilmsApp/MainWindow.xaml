@@ -8,7 +8,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="FilmsGrid">
+        <DataGrid Name="FilmsGrid" AutoGenerateColumns="False" Margin="0,0,263,130" ColumnWidth="*" VerticalAlignment="Center">
+            <DataGrid.Columns>
+                <!--Названия столбцов привязаны к названиям столбцов в DataTable "films"-->
+                <DataGridTextColumn Header="Название" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Оценка" Binding="{Binding rate}"/>
+                <!--В столбце "Дата" даты выводятся в формате "yyyy-MM-dd"-->
+                <DataGridTextColumn Header="Дата" Binding="{Binding fdate, StringFormat=\{0:yyyy-MM-dd\}}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>
