@@ -24,7 +24,6 @@ namespace FilmsApp
     public partial class MainWindow : Window
     {
         private string strCon = @"Server=localhost;Port=5432;Username=postgres;Password=admin;Database=films";
-        private NpgsqlDataAdapter adapter = new NpgsqlDataAdapter();
         public DataSet dataset = new DataSet();
         public MainWindow()
         {
@@ -34,12 +33,12 @@ namespace FilmsApp
         }
         private DataTable CreateDataTable()
         {
-            DataTable table = new DataTable("Films");
-            table.Columns.Add("Id", typeof(int));
-            table.Columns.Add("name", typeof(string));
-            table.Columns.Add("rate", typeof(double));
-            table.Columns.Add("fdate", typeof(DateTime));
-            return table;
+            DataTable films = new DataTable("Films");
+            films.Columns.Add("Id", typeof(int));
+            films.Columns.Add("name", typeof(string));
+            films.Columns.Add("rate", typeof(double));
+            films.Columns.Add("fdate", typeof(DateTime));
+            return films;
         }
         private void FillTable(DataTable table)
         {
@@ -48,8 +47,6 @@ namespace FilmsApp
                 con.Open();
                 var cmd = new NpgsqlCommand("select * from film", con);
                 table.Load(cmd.ExecuteReader());
-                //adapter = new NpgsqlDataAdapter(cmd);
-                //adapter.Fill(dataset);
                 dataset.Tables.Add(table);
                 FilmsGrid.ItemsSource = dataset?.Tables["Films"].DefaultView;
             }
