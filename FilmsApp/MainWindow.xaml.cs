@@ -49,8 +49,12 @@ namespace FilmsApp
                 table.Load(cmd.ExecuteReader());
                 dataset.Tables.Add(table);
                 FilmsGrid.ItemsSource = dataset?.Tables["Films"].DefaultView;
-            }
-            
+            }     
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

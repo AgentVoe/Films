@@ -15,5 +15,8 @@ namespace FilmsApp
         public string Fname { get { return fname; } set { fname = value; } }
         private double rate;
         public double Rate { get { return rate; } set { rate = value; } }
+        private DateTime date;
+        public DateTime Date { get { return date; } set { date = value; } }
+
     }
 }
