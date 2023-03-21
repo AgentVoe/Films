@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="FilmsGrid" AutoGenerateColumns="False" Margin="0,0,263,130" ColumnWidth="*" VerticalAlignment="Center">
+        <DataGrid Name="FilmsGrid" AutoGenerateColumns="False" Margin="0,0,263,130" ColumnWidth="*">
             <DataGrid.Columns>
                 <!--Названия столбцов привязаны к названиям столбцов в DataTable "films"-->
                 <DataGridTextColumn Header="Название" Binding="{Binding name}"/>
@@ -17,5 +17,8 @@
                 <DataGridTextColumn Header="Дата" Binding="{Binding fdate, StringFormat=\{0:yyyy-MM-dd\}}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Orientation="Vertical" Margin="100,167,377,71" RenderSize="50 50" RenderTransformOrigin="1.721,0.296">
+            <Button x:Name="DeleteButton" Content="Удалить" IsDefault="True" Click="DeleteButton_Click" Width="322"/>
+        </StackPanel>
     </Grid>
 </Window>
