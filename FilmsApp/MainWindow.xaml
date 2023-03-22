@@ -7,6 +7,14 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <!--Добавил Стиль с таргетом на кнопки. Теперь кнопки будут обладать данными свойствами.-->
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0 10 0 0"/>
+            <Setter Property="IsDefault" Value="True"/>
+            <Setter Property="Width" Value="173"/>  
+        </Style>
+    </Window.Resources>
     <Grid>
         <DataGrid Name="FilmsGrid" AutoGenerateColumns="False" Margin="0,0,263,130" ColumnWidth="*">
             <DataGrid.Columns>
@@ -17,8 +25,9 @@
                 <DataGridTextColumn Header="Дата" Binding="{Binding fdate, StringFormat=\{0:yyyy-MM-dd\}}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Vertical" Margin="100,167,377,71" RenderSize="50 50" RenderTransformOrigin="1.721,0.296">
-            <Button x:Name="DeleteButton" Content="Удалить" IsDefault="True" Click="DeleteButton_Click" Width="322"/>
+        <StackPanel Orientation="Vertical" Margin="542,10,25,228" RenderSize="50 50">
+            <Button x:Name="DeleteButton" Content="Удалить"  Click="DeleteButton_Click"/>
+            <Button x:Name="AddButton" Content="Добавить" IsDefault="True" Click="AddButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>
