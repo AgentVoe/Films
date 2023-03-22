@@ -49,6 +49,7 @@ namespace FilmsApp
                 table.Load(cmd.ExecuteReader());
                 dataset.Tables.Add(table);
                 FilmsGrid.ItemsSource = dataset?.Tables["Films"].DefaultView;
+                NameBox.ItemsSource = dataset?.Tables["Films"].DefaultView;
             }     
         }
 
@@ -58,6 +59,11 @@ namespace FilmsApp
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

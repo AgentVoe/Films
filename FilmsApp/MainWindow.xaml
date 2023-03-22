@@ -16,7 +16,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <DataGrid Name="FilmsGrid" AutoGenerateColumns="False" Margin="0,0,263,130" ColumnWidth="*">
+        <DataGrid Name="FilmsGrid" AutoGenerateColumns="False" Margin="0,0,263,130" ColumnWidth="*" CanUserAddRows="False" >
             <DataGrid.Columns>
                 <!--Названия столбцов привязаны к названиям столбцов в DataTable "films"-->
                 <DataGridTextColumn Header="Название" Binding="{Binding name}"/>
@@ -25,9 +25,11 @@
                 <DataGridTextColumn Header="Дата" Binding="{Binding fdate, StringFormat=\{0:yyyy-MM-dd\}}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Vertical" Margin="542,10,25,228" RenderSize="50 50">
+        <StackPanel Orientation="Vertical" Margin="542,10,25,200" RenderSize="50 50">
             <Button x:Name="DeleteButton" Content="Удалить"  Click="DeleteButton_Click"/>
-            <Button x:Name="AddButton" Content="Добавить" IsDefault="True" Click="AddButton_Click"/>
+            <Button x:Name="AddButton" Content="Добавить" Click="AddButton_Click"/>
+            <Button x:Name="SaveButton" Content="Сохранить" Click="SaveButton_Click"/>
+            <ComboBox x:Name="NameBox" Margin="0 10 0 0" Height="20" Width="173" DisplayMemberPath="name" SelectedValuePath="Id"/>
         </StackPanel>
     </Grid>
 </Window>
