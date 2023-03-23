@@ -25,6 +25,8 @@ namespace FilmsApp
     {
         private string strCon = @"Server=localhost;Port=5432;Username=postgres;Password=admin;Database=films";
         public DataSet dataset = new DataSet();
+        private List<ComboBox> comboBoxes = new List<ComboBox>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace FilmsApp
                 table.Load(cmd.ExecuteReader());
                 dataset.Tables.Add(table);
                 FilmsGrid.ItemsSource = dataset?.Tables["Films"].DefaultView;
-                NameBox.ItemsSource = dataset?.Tables["Films"].DefaultView;
+                FillComboBoxes();
             }     
         }
 
@@ -65,7 +67,23 @@ namespace FilmsApp
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //FilmsGrid.SelectedItems
+        }
+        /// <summary>
+        ///  Заполняет каждый ComboBox соответсвующими данными таблицы.
+        /// </summary>
+        private void FillComboBoxes()
+        {
+            comboBoxes = new List<ComboBox>()
+            {
+                NameBox,
+                RateBox,
+                DateBox
+            };
+            foreach (var box in comboBoxes)
+            {
+                box.ItemsSource = dataset?.Tables["Films"].DefaultView;
+            }
         }
     }
 }
