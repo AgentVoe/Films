@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections;
+using System.Windows.Controls.Primitives;
 
 namespace FilmsApp
 {
@@ -25,7 +26,7 @@ namespace FilmsApp
     {
         private string strCon = @"Server=localhost;Port=5432;Username=postgres;Password=admin;Database=films";
         public DataSet dataset = new DataSet();
-        private List<ComboBox> comboBoxes = new List<ComboBox>();
+        private List<ComboBox> comboBoxes;
 
         public MainWindow()
         {
@@ -51,7 +52,8 @@ namespace FilmsApp
                 table.Load(cmd.ExecuteReader());
                 dataset.Tables.Add(table);
                 FilmsGrid.ItemsSource = dataset?.Tables["Films"].DefaultView;
-                FillComboBoxes();
+                List<ComboBox> t = new List<ComboBox>();
+                FillComboBoxes(t);
             }     
         }
 
@@ -69,21 +71,52 @@ namespace FilmsApp
         {
             //FilmsGrid.SelectedItems
         }
-        /// <summary>
-        ///  Заполняет каждый ComboBox соответсвующими данными таблицы.
-        /// </summary>
-        private void FillComboBoxes()
+        private List<ComboBox> CreateListOfCB(List<ComboBox> comboBoxes)
         {
-            comboBoxes = new List<ComboBox>()
+            return new List<ComboBox>()
             {
                 NameBox,
                 RateBox,
                 DateBox
             };
-            foreach (var box in comboBoxes)
-            {
-                box.ItemsSource = dataset?.Tables["Films"].DefaultView;
+        }
+        /// <summary>
+        ///  Заполняет каждый ComboBox соответсвующими данными таблицы.
+        ///  Метод имеет два необязательных параметра:
+        ///  <param name="t">Список combobox'оф, который будет использован для приязки данных.</param>
+        ///  <param name="grid">При передачи grid'a в метод, метод понимает, что пользователь работает с grid'ом.
+        ///  Пользоавтель выбирает строку и все элементы строки передаются в combobox'ы в виде текста.</param>
+        /// </summary>
+        private void FillComboBoxes(List<ComboBox> t = null!, DataGrid grid = null!)
+        {
+            comboBoxes = CreateListOfCB(t);
+            if (grid == null)
+            {            
+                foreach (var box in comboBoxes)
+                {
+                    box.ItemsSource = dataset?.Tables["Films"].DefaultView;
+                }
             }
+            else
+            {
+                foreach (DataRowView rowView in FilmsGrid.SelectedItems)
+                {
+                    if (rowView != null)
+                    {
+                        DataRow row = rowView.Row;
+                        var data = row.ItemArray.ToList();
+                        Films film = new Films(data);
+                        NameBox.Text = film.Fname;
+                        RateBox.Text = film.Rate.ToString();
+                        DateBox.Text = film.Date.ToString();
+                    }
+                }
+            }
+        }
+
+        private void FilmsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FillComboBoxes(grid: FilmsGrid);
         }
     }
 }
